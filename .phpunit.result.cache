@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"Tests\\AuthServiceTest::testLoginSuccess":0.453,"Tests\\AuthServiceTest::testLoginFailedWrongPassword":0.434,"Tests\\AuthServiceTest::testLoginFailedEmailNotFound":0}}

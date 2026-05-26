@@ -1,15 +1,21 @@
 <?php
 include 'config.php';
+require_once 'src/UserRepository.php';
+require_once 'src/AuthService.php';
+
+use App\UserRepository;
+use App\AuthService;
 
 if(isset($_POST['login'])){
 
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $q = mysqli_query($conn,"SELECT * FROM users WHERE email='$email'");
-    $user = mysqli_fetch_assoc($q);
+    $userRepo = new UserRepository($conn);
+    $authService = new AuthService($userRepo);
+    $user = $authService->login($email, $password);
 
-    if($user && password_verify($password, $user['password'])){
+    if($user){
         $_SESSION['user'] = $user;
         header("Location:index.php");
     } else {
